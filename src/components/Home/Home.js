@@ -14,8 +14,7 @@ const Home = () => {
     }, [])
     return (
         <div>
-            <h1>This is Home</h1>
-            <p>Post: {posts.length}</p>
+            <p style={{color: 'blue'}}>Post: {posts.length}</p>
             {
                 posts.map(post => <Post post={post}></Post>)
             }

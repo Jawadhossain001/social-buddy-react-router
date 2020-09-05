@@ -9,12 +9,11 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import './Post.css';
 import { useHistory } from 'react-router-dom';
-import Comments from '../Comments/Comments';
 
 const useStyles = makeStyles({
     root: {
       minWidth: 275,
-      marginTop: 50
+      marginTop: 60
     },
     bullet: {
       display: 'inline-block',
@@ -31,9 +30,9 @@ const useStyles = makeStyles({
 
 const Post = (props) => {
     const {userId, id, title, body} = props.post;
+
     const classes = useStyles();
     const history = useHistory();
-    const [comments, setComments] = useState({});
     
     const handleClick = (postDet) => {
         const url = `/post/${postDet}`;
@@ -67,10 +66,6 @@ const Post = (props) => {
         </Button>
         </CardActions>
     </Card>
-
-          {
-            comments.map(comment => <Comments comment={comment}></Comments> )
-          }
      </div>     
     );
 }

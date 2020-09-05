@@ -10,10 +10,12 @@ import Home from './components/Home/Home';
 import Nomatch from './components/NoMatch/Nomatch';
 import PostDetail from './components/PostDetail/PostDetail';
 import Comments from './components/Comments/Comments';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
+      <Header></Header>
         <Router>
             <Switch>
                 <Route path="/home">
@@ -21,7 +23,7 @@ function App() {
                 </Route>
                 <Route path="/post/:postDet">
                      <PostDetail></PostDetail>
-                </Route>
+                </Route> 
                 <Route path="/post/:comments">
                      <Comments></Comments>
                 </Route>
