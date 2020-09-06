@@ -4,27 +4,43 @@ import Comments from '../Comments/Comments';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import ShareIcon from '@material-ui/icons/Share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGift, faGrin } from '@fortawesome/free-solid-svg-icons';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { red } from '@material-ui/core/colors';
+import { Button, IconButton, CardActions, CardHeader, Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles({
     root: {
       minWidth: 275,
-      marginTop: 50
-    },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
+      marginTop: 20
     },
     title: {
-      fontSize: 14,
+      fontSize: 1,
     },
     pos: {
-      marginBottom: 12,
-    }, 
+      fontSize: 15,
+      color: 'blue',
+      marginRight: 450
+    },
+    avatar: {
+        backgroundColor: red[500],
+      },
+    
+    inp: {
+        marginBottom: 30,
+        width: '70%',
+        height: 30,
+        borderRadius: 20
+    },
+    btn: {
+        marginLeft: 10
+    }
   });
 
 const PostDetail = () => {
@@ -60,13 +76,21 @@ const PostDetail = () => {
     };
     return (
         <div>
-            {/* <h3>This is Friend detail Component: {postDet}</h3> */}
-            {/* <p>User Id: {post.userId}</p>
-            <p>ID: {post.id}</p>
-            <h4>Title: {post.title}</h4>
-            <p>{post.body}</p> */}
-
             <Card className={classes.root}>
+                <CardHeader className={classes.titHeader}
+                    avatar={
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                        R
+                    </Avatar>
+                    }
+                    action={
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                    }
+                    title="Shrimp"
+                    subheader="September 14, 2020"
+                />
                 <CardActionArea>
                 <CardMedia
                     className={classes.media}
@@ -75,25 +99,40 @@ const PostDetail = () => {
                 />
                 <CardContent>
                 <Typography gutterBottom variant="body2" component="p">
-                        User Id: {post.userId}
-                    </Typography><Typography gutterBottom variant="body2" component="p">
                         ID: {post.id}
-                    </Typography>
-                    <Typography gutterBottom variant="h4" component="h2">
+                </Typography>
+                <Typography gutterBottom variant="h4" component="h2">
                         {post.title}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
                         {post.body}
-                    </Typography>
-                </CardContent>
-                </CardActionArea>
-            </Card>
+                </Typography>
+                <CardActions disableSpacing>
+                    <IconButton aria-label="add to favorites">
+                        <FavoriteIcon />
+                    </IconButton>
+                    <IconButton aria-label="share">
+                        <ShareIcon />
+                    </IconButton>
+                </CardActions>
+            </CardContent>
+            </CardActionArea>
+        </Card>
             
-            <h6>Comment: {comments.length}</h6>
+            <CardContent className={classes.pos}>
+                <h6>Comment: {comments.length}</h6>
+            </CardContent>
             {
                 comments.map(comment => <Comments comment={comment}></Comments> )
             }
-            
+            <CardContent >
+                <input className={classes.inp} placeholder="write a reply" type="text"/>
+                {/* <FontAwesomeIcon icon={ faGift } /> 
+                <FontAwesomeIcon icon={ faGrin } /> */}
+                <Button className={classes.btn} variant="contained" color="primary">
+                    comment
+                </Button>
+            </CardContent>
         </div>
     );
 };

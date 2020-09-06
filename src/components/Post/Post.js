@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '@material-ui/core';
+import { Button, CardHeader, Avatar, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -7,8 +7,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import './Post.css';
 import { useHistory } from 'react-router-dom';
+import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
     root: {
@@ -23,13 +26,16 @@ const useStyles = makeStyles({
     title: {
       fontSize: 14,
     },
+    avatar: {
+      backgroundColor: red[500],
+    },
     pos: {
       marginBottom: 12,
     }, 
   });
 
 const Post = (props) => {
-    const {userId, id, title, body} = props.post;
+    const {id, title, body} = props.post;
 
     const classes = useStyles();
     const history = useHistory();
@@ -42,6 +48,20 @@ const Post = (props) => {
     return (
       <div>
     <Card className={classes.root}>
+          <CardHeader
+              avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+                R
+            </Avatar>
+                }
+              action={
+            <IconButton aria-label="settings">
+                  <MoreVertIcon />
+            </IconButton>
+                }
+              title="Shrimp"
+              subheader="September 14, 2020"
+          />
         <CardActionArea>
         <CardMedia
             className={classes.media}
@@ -58,6 +78,9 @@ const Post = (props) => {
         </CardContent>
         </CardActionArea>
         <CardActions>
+        <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+        </IconButton>
         <Button size="small" color="primary">
             Share
         </Button>

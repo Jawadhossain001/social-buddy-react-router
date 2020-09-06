@@ -4,8 +4,8 @@ import { Paper, Grid, Typography, makeStyles, Avatar } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    marginTop: 30,
-    marginBottom: 30
+    marginTop: -30,
+    marginBottom: 60
   },
   paper: {
     padding: theme.spacing(2),
